@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
+import { Info } from 'lucide-react';
 import MaterialsFilter from './components/MaterialsFilter';
 import MaterialsGrid from './components/MaterialsGrid';
-import { filterMaterials, MaterialFilters } from '../../../lib/materials';
-import { DollarSign } from 'lucide-react';
+import ManufacturerSection from './components/ManufacturerSection';
+import { filterMaterials, MaterialFilters, manufacturers } from '../../../lib/materials';
 
 export default function Materials() {
   const [filters, setFilters] = useState<MaterialFilters>({});
@@ -17,40 +18,35 @@ export default function Materials() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900">Our Materials</h1>
           <p className="mt-4 text-xl text-gray-600">
-            Explore our collection of premium stones
+            Explore our collection of premium stones and see them in action
           </p>
-          
-          <div className="mt-8 flex flex-col items-center">
-            <p className="text-lg font-medium text-gray-700 mb-4">Price Range Guide:</p>
-            <div className="flex gap-8">
-              <div className="flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-green-600" />
-                <span className="text-sm text-gray-600">Premium</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  <DollarSign className="h-4 w-4 text-green-600" />
-                  <DollarSign className="h-4 w-4 text-green-600" />
-                </div>
-                <span className="text-sm text-gray-600">Luxury</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  <DollarSign className="h-4 w-4 text-green-600" />
-                  <DollarSign className="h-4 w-4 text-green-600" />
-                  <DollarSign className="h-4 w-4 text-green-600" />
-                </div>
-                <span className="text-sm text-gray-600">Exclusive</span>
-              </div>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
+          <div className="flex items-start gap-4">
+            <Info className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+            <div>
+              <h3 className="text-lg font-semibold text-blue-900">About Our Materials</h3>
+              <p className="mt-2 text-blue-800">
+                As expert fabricators, we work with both natural and manufactured stones to create 
+                stunning installations. While we don't sell raw materials, we can work with any stone 
+                you choose from our trusted manufacturing partners. The examples below showcase some 
+                of our most popular materials.
+              </p>
             </div>
           </div>
         </div>
 
-        <MaterialsFilter
-          activeFilters={filters}
-          onFilterChange={setFilters}
-        />
+        <div className="mb-12">
+          <MaterialsFilter
+            activeFilters={filters}
+            onFilterChange={setFilters}
+          />
+        </div>
+        
         <MaterialsGrid materials={filteredMaterials} />
+        
+        <ManufacturerSection manufacturers={manufacturers} />
       </div>
     </div>
   );
