@@ -1,10 +1,11 @@
 import React from 'react';
-import { Category } from '../../../../types/gallery';
+import { Category } from '../../../../lib/gallery';
+import { InstallationType } from '../../../../lib/shared/types';
 
 type Props = {
   categories: Category[];
-  activeCategory: string;
-  onCategoryChange: (category: string) => void;
+  activeCategory: InstallationType | 'all';
+  onCategoryChange: (category: InstallationType | 'all') => void;
 };
 
 export default function GalleryFilter({ categories, activeCategory, onCategoryChange }: Props) {
