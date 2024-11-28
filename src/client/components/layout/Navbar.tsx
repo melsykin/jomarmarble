@@ -16,9 +16,8 @@ export default function Navbar() {
           
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
-            <Link to="/materials" className="text-gray-700 hover:text-blue-600 transition-colors">Materials</Link>
             <Link to="/gallery" className="text-gray-700 hover:text-blue-600 transition-colors">Gallery</Link>
-            <Link to="/reviews" className="text-gray-700 hover:text-blue-600 transition-colors">Reviews</Link>
+            <Link to="/materials" className="text-gray-700 hover:text-blue-600 transition-colors">Materials</Link>
             <Link to="/contact" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
               Contact Us
             </Link>
@@ -36,9 +35,8 @@ export default function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
             <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</Link>
-            <Link to="/materials" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Materials</Link>
             <Link to="/gallery" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Gallery</Link>
-            <Link to="/reviews" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Reviews</Link>
+            <Link to="/materials" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Materials</Link>
             <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact Us</Link>
           </div>
         </div>
