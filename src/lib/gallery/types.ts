@@ -1,12 +1,8 @@
-export type GalleryItem = {
-  id: string;
-  title: string;
-  category: 'countertops' | 'floors' | 'backsplashes' | 'tables';
-  image: string;
-  description: string;
-};
+import { InstallationType, Installation } from '../shared/types';
 
 export type Category = {
-  id: GalleryItem['category'];
+  id: InstallationType;
   label: string;
 };
+
+export type { Installation };
