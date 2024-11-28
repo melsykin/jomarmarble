@@ -1,6 +1,9 @@
-import React from 'react';
-import { Material } from '../../../../types/materials';
-import { DollarSign } from 'lucide-react';
+import React, { useState } from 'react';
+import { Material } from '../../../../lib/materials';
+import { DollarSign, Image } from 'lucide-react';
+import MaterialGallery from './MaterialGallery';
+import GridLayout from '../../../components/common/GridLayout';
+import GridCard from '../../../components/common/GridCard';
 
 type Props = {
   materials: Material[];
@@ -23,37 +26,48 @@ const PriceIndicator = ({ range }: { range: Material['priceRange'] }) => {
 };
 
 export default function MaterialsGrid({ materials }: Props) {
+  const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {materials.map((material) => (
-        <div
-          key={material.id}
-          className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-        >
-          <div className="aspect-w-16 aspect-h-12">
-            <img
-              src={material.image}
-              alt={material.name}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">{material.name}</h3>
-                <p className="text-sm text-gray-500 mt-1">{material.origin}</p>
+    <>
+      <GridLayout>
+        {materials.map((material) => (
+          <GridCard
+            key={material.id}
+            image={material.image}
+            title={material.name}
+            description={material.description}
+            onClick={() => material.gallery && setSelectedMaterial(material)}
+            footer={
+              <div className="flex justify-between items-center">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                  {material.type.charAt(0).toUpperCase() + material.type.slice(1)}
+                  <span className="ml-2 text-blue-600/60">
+                    ({material.type === 'quartz' || material.type === 'porcelain' ? 'Manufactured' : 'Natural'})
+                  </span>
+                </span>
+                <PriceIndicator range={material.priceRange} />
               </div>
-              <PriceIndicator range={material.priceRange} />
-            </div>
-            <p className="mt-4 text-gray-600">{material.description}</p>
-            <div className="mt-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                {material.type.charAt(0).toUpperCase() + material.type.slice(1)}
-              </span>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+            }
+            imageOverlay={material.gallery && (
+              <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="text-white flex items-center gap-2">
+                  <Image className="h-6 w-6" />
+                  <span>View Gallery</span>
+                </div>
+              </div>
+            )}
+          />
+        ))}
+      </GridLayout>
+
+      {selectedMaterial && selectedMaterial.gallery && (
+        <MaterialGallery
+          images={selectedMaterial.gallery}
+          materialName={selectedMaterial.name}
+          onClose={() => setSelectedMaterial(null)}
+        />
+      )}
+    </>
   );
 }
