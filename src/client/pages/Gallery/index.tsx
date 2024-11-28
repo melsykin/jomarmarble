@@ -1,23 +1,15 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
 import GalleryFilter from './components/GalleryFilter';
 import GalleryGrid from './components/GalleryGrid';
-import { categories, galleryItems } from '../../../lib/gallery';
+import { categories, installations } from '../../../lib/gallery';
+import { InstallationType } from '../../../lib/shared/types';
 
 export default function Gallery() {
-  const [searchParams] = useSearchParams();
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState<InstallationType | 'all'>('all');
 
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    if (categoryParam && categories.some(cat => cat.id === categoryParam)) {
-      setActiveCategory(categoryParam);
-    }
-  }, [searchParams]);
-
-  const filteredItems = useMemo(() => {
-    if (activeCategory === 'all') return galleryItems;
-    return galleryItems.filter((item) => item.category === activeCategory);
+  const filteredInstallations = useMemo(() => {
+    if (activeCategory === 'all') return installations;
+    return installations.filter((item) => item.type === activeCategory);
   }, [activeCategory]);
 
   return (
@@ -36,7 +28,7 @@ export default function Gallery() {
           onCategoryChange={setActiveCategory}
         />
 
-        <GalleryGrid items={filteredItems} />
+        <GalleryGrid installations={filteredInstallations} />
       </div>
     </div>
   );
