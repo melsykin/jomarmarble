@@ -26,14 +26,20 @@ The following environment variables need to be set in your Netlify deployment:
 - `VITE_GOOGLE_PLACE_ID`: Your Google Place ID
 - `VITE_API_BASE_URL`: API base URL (production)
 - `VITE_COMPANY_EMAIL`: Company email address
+- `VITE_GOOGLE_CREDENTIALS`: Base64-encoded Google Service Account credentials
 
-## Google Service Account
+## Google Service Account Setup
 
-The application requires a Google Service Account for accessing Google APIs. In Netlify:
-
-1. Go to Site Settings > Environment Variables
-2. Create a new environment variable called `GOOGLE_APPLICATION_CREDENTIALS`
-3. Paste the entire contents of your `server/credentials.json` file as the value
+1. Create a service account in the Google Cloud Console
+2. Download the credentials JSON file
+3. Convert the credentials to base64:
+   ```bash
+   base64 credentials.json | tr -d '\n' > encoded_credentials.txt
+   ```
+4. Add the contents of `encoded_credentials.txt` as `VITE_GOOGLE_CREDENTIALS` in Netlify:
+   - Go to Site Settings > Environment Variables
+   - Add new variable named `VITE_GOOGLE_CREDENTIALS`
+   - Paste the base64-encoded credentials as the value
 
 ## Deployment
 
@@ -46,7 +52,6 @@ The application requires a Google Service Account for accessing Google APIs. In 
 3. Add environment variables in Netlify:
    - Go to Site Settings > Environment Variables
    - Add all required environment variables
-   - Add Google Service Account credentials
 4. Deploy!
 
 ### Manual Deployment
@@ -59,17 +64,12 @@ npm run build
 netlify deploy --prod
 ```
 
-## Project Structure
+## Security Notes
 
-See [directory-structure.md](src/directory-structure.md) for detailed project organization.
-
-## Development Guidelines
-
-- Keep environment variables in `.env` for local development
-- Never commit sensitive credentials to the repository
-- Use environment variables for all configuration values
-- Keep Google Service Account credentials secure
-- Test the application with production environment variables before deploying
+- Never commit `credentials.json` to the repository
+- Keep your `.env` file secure and never commit it
+- Use environment variables for all sensitive data
+- The base64-encoded credentials are automatically decoded during deployment
 
 ## License
 
