@@ -1,13 +1,13 @@
 import React from 'react';
-import { Gem, Table, Grid, Lightbulb, ArrowRight } from 'lucide-react';
+import { Gem, Lightbulb, Flame, StepForward, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { featuresContent } from '../../../../lib/content/home';
 
 const iconMap = {
   Gem,
-  Table,
-  Grid,
-  Lightbulb
+  Lightbulb,
+  Flame,
+  Steps: StepForward
 };
 
 export default function Features() {
