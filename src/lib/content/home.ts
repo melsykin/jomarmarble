@@ -12,29 +12,29 @@ export const featuresContent = {
   subtitle: 'Discover our range of premium stone craftsmanship services',
   features: [
     {
-      name: 'Premium Countertops',
-      description: 'Elegant marble and granite countertops crafted to perfection for your kitchen and bathroom.',
+      name: 'Countertops & Backsplashes',
+      description: 'Masterfully crafted marble, granite, and quartzite surfaces that transform your kitchen and bathroom into stunning spaces.',
       icon: 'Gem',
       link: '/gallery?category=countertops',
     },
     {
-      name: 'Custom Flooring',
-      description: 'Stunning floor installations that combine durability with timeless beauty.',
-      icon: 'Grid',
-      link: '/gallery?category=floors',
-    },
-    {
-      name: 'Designer Backsplashes',
-      description: 'Artistic backsplash designs that add character and style to your space.',
-      icon: 'Table',
-      link: '/gallery?category=backsplashes',
-    },
-    {
       name: 'Smart Illuminated Tables',
-      description: 'Unique semi-precious stone tables with smart-controlled LED illumination.',
+      description: 'Exclusive illuminated tables crafted from premium stones including marble, quartzite, and rare semi-precious materials.',
       icon: 'Lightbulb',
       link: '/gallery?category=tables',
       builderLink: '/builder',
+    },
+    {
+      name: 'Custom Steps',
+      description: 'Stunning staircase installations that combine durability with timeless beauty.',
+      icon: 'Steps',
+      link: '/gallery?category=steps',
+    },
+    {
+      name: 'Luxury Fireplaces',
+      description: 'Sophisticated fireplace surrounds that create a stunning focal point in any room.',
+      icon: 'Flame',
+      link: '/gallery?category=fireplaces',
     },
   ]
 };
